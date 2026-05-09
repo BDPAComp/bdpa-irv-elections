@@ -1,4 +1,7 @@
-Homework: Review each requirement: https://github.com/nhscc/problem-statements/blob/main/2026/elections_irv/bdpa-elections_irv-part-1.md
+Homework: 
+1. Review each requirement: https://github.com/nhscc/problem-statements/blob/main/2026/elections_irv/bdpa-elections_irv-part-1.md
+2. Join the slack: https://app.slack.com/client/T01P6S2FCQ7/C0B2KRC8PMZ
+
 
 
 # BDPA NHSCC 2026 - IRV Elections System
