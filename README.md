@@ -349,6 +349,6 @@ This project is created for the BDPA NHSCC 2026 competition.
 
 ## 📞 Contact
 
-Questions? Reach out to the team on [Slack]((https://app.slack.com/client/T01P6S2FCQ7/C0B2KRC8PMZ)) or open an issue!
+Questions? Reach out to the team on [Slack] `https://app.slack.com/client/T01P6S2FCQ7/C0B2KRC8PMZ` or open an issue!
 
 **Good luck and happy coding! 🚀**
