@@ -1,3 +1,6 @@
+Homework: Review each requirement: https://github.com/nhscc/problem-statements/blob/main/2026/elections_irv/bdpa-elections_irv-part-1.md#requirement-3
+
+
 # BDPA NHSCC 2026 - IRV Elections System
 
 🗳️ **A secure electronic voting system using Instant-Runoff Voting (IRV)**
