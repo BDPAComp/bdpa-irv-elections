@@ -1,360 +1,168 @@
-Homework: 
-1. Review each requirement: https://github.com/nhscc/problem-statements/blob/main/2026/elections_irv/bdpa-elections_irv-part-1.md
-2. Join the slack: https://app.slack.com/client/T01P6S2FCQ7/C0B2KRC8PMZ
+# BDPA Elections — Setup & Developer Guide
 
+## Quick Start (3 commands)
 
+```bash
+# 1. Install dependencies
+npm install
 
-# BDPA NHSCC 2026 - IRV Elections System
+# 2. Start dev server on port 3000
+npm run dev
 
-🗳️ **A secure electronic voting system using Instant-Runoff Voting (IRV)**
-
-Built by [Your Team Name] for the BDPA National High School Computer Competition 2026
-
----
-
-## 📋 Table of Contents
-
-- [About the Project](#about-the-project)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [API Documentation](#api-documentation)
-- [Team Workflow](#team-workflow)
-- [Contributing](#contributing)
-- [Team Members](#team-members)
+# 3. Open in browser
+# → http://127.0.0.1:3000
+```
 
 ---
 
-## 🎯 About the Project
-
-This application allows voters to participate in elections using Instant-Runoff Voting (IRV), where voters rank candidates from most to least favored. The system supports four user types:
-
-- **Voters** - Cast and manage their ranked-choice ballots
-- **Moderators** - Manage voter eligibility for elections
-- **Administrators** - Create and manage elections and users
-- **Reporters** - View historical election results
-
----
-
-## ✨ Features
-
-### Part 1: Core Features
-- ✅ Secure user authentication with password recovery
-- ✅ Role-based access control (4 user types)
-- ✅ Personalized dashboards for each user type
-- ✅ Real-time election updates (no page refresh needed)
-- ✅ Complete election history with sorting and filtering
-- ✅ IRV algorithm implementation
-- ✅ Mobile-responsive design
-- ✅ Security hardening (XSS/SQL injection prevention)
-- ✅ Performance optimization with caching
-
-### Part 2: Enhanced Features
-- ✨ Election audit logs
-- ✨ Detailed IRV results with elimination rounds
-- ⏰ Expiration warnings for closing elections
-- 🔐 Security audit log (last 5 logins)
-- ✏️ User profile self-editing
-- 👥 Reporter assignment system
-- 🕐 Human-friendly timestamps
-- 📝 Open registration with admin approval
-- ⏱️ 5-minute vote change window
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **Framework**: [React / Vue / Angular / Your Choice]
-- **Styling**: [Tailwind CSS / Bootstrap / CSS / Your Choice]
-- **State Management**: [Redux / Vuex / Your Choice]
-
-### Backend
-- **Runtime**: [Node.js / Python / Your Choice]
-- **Framework**: [Express / Flask / Django / Your Choice]
-- **Database**: [PostgreSQL / MongoDB / MySQL / Your Choice]
-
-### External Services
-- **API**: BDPA Elections IRV API (Required)
-- **API Base URL**: `https://elections-irv.api.hscc.bdpa.org/v1`
-
----
-
-## 🚀 Getting Started
+## Getting React + Vite Installed
 
 ### Prerequisites
 
-```bash
-# Node.js (if using Node backend/frontend)
-node --version  # Should be v16+ or higher
+- **Node.js v18+** — Download from https://nodejs.org (choose the LTS version)
+- Verify after installing:
+  ```bash
+  node --version   # should print v18.x.x or higher
+  npm --version    # should print 9.x.x or higher
+  ```
 
-# Python (if using Python backend)
-python --version  # Should be 3.8+
+### Step-by-step on a Windows AWS WorkSpace
 
-# Git
-git --version
-```
+1. **Download Node.js LTS** from https://nodejs.org and run the installer.  
+   Accept all defaults. Restart your terminal after.
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-team/bdpa-irv-elections.git
-   cd bdpa-irv-elections
+2. **Open a terminal** (Command Prompt or PowerShell) and navigate to your desktop:
+   ```cmd
+   cd %USERPROFILE%\Desktop
    ```
 
-2. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   # Edit .env and add your API key and other configuration
+3. **Copy this project folder** to `%USERPROFILE%\Desktop\source`, or create it fresh:
+   ```cmd
+   mkdir source
+   cd source
    ```
 
-3. **Install dependencies**
-   
-   For Node.js:
-   ```bash
+4. **Place all project files** into `source\` (or clone your repo there).
+
+5. **Install dependencies:**
+   ```cmd
    npm install
    ```
-   
-   For Python:
-   ```bash
-   pip install -r requirements.txt
-   ```
+   This reads `package.json` and downloads React, Vite, and React Router into
+   a `node_modules\` folder. Takes ~30 seconds.
 
-4. **Initialize the database**
-   ```bash
-   # Add your database setup commands here
-   npm run db:setup
-   # or
-   python manage.py migrate
-   ```
-
-5. **Start the development server**
-   ```bash
+6. **Start the dev server:**
+   ```cmd
    npm run dev
-   # or
-   python app.py
+   ```
+   You should see:
+   ```
+   VITE v5.x.x  ready in 300ms
+   ➜  Local:   http://127.0.0.1:3000/
    ```
 
-6. **Open in browser**
-   ```
-   http://localhost:3000
-   ```
-
-### API Key Setup
-
-1. Contact BDPA NHSCC staff or use the BDPABot on Slack to get your API key
-2. Add to `.env` file:
-   ```
-   API_KEY=your-api-key-here
-   API_BASE_URL=https://elections-irv.api.hscc.bdpa.org/v1
-   ```
-3. **NEVER commit your API key to GitHub!**
+7. **Open http://127.0.0.1:3000** in your browser. Done!
 
 ---
 
-## 📁 Project Structure
-
-```
-bdpa-irv-elections/
-├── frontend/              # Frontend application
-│   ├── src/
-│   │   ├── components/   # Reusable components
-│   │   ├── pages/        # Page components
-│   │   ├── services/     # API service calls
-│   │   ├── utils/        # Helper functions
-│   │   └── App.js        # Main app component
-│   ├── public/
-│   └── package.json
-│
-├── backend/              # Backend application
-│   ├── routes/          # API routes
-│   ├── controllers/     # Request handlers
-│   ├── models/          # Database models
-│   ├── middleware/      # Authentication, etc.
-│   ├── utils/           # Helper functions
-│   └── server.js        # Main server file
-│
-├── database/            # Database scripts
-│   ├── migrations/
-│   └── seeds/
-│
-├── docs/                # Documentation
-│   ├── API.md          # Internal API docs
-│   ├── SETUP.md        # Detailed setup guide
-│   └── WORKFLOW.md     # Development workflow
-│
-├── tests/              # Test files
-│   ├── unit/
-│   └── integration/
-│
-├── .env.example        # Example environment variables
-├── .gitignore          # Git ignore rules
-├── README.md           # This file
-└── package.json        # Dependencies
-```
-
----
-
-## 📚 API Documentation
-
-Full API documentation: https://hscc18f802d3.docs.apiary.io
-
-### Key Endpoints
-
-```
-GET    /info                              # System metadata
-GET    /elections                         # List all elections
-POST   /elections                         # Create election
-GET    /elections/:id                     # Get election details
-PATCH  /elections/:id                     # Update election
-DELETE /elections/:id                     # Delete election
-GET    /elections/:id/ballots             # Get all ballots
-PUT    /elections/:id/ballots/:voter_id   # Cast/update vote
-DELETE /elections/:id/ballots/:voter_id   # Delete vote
-```
-
-**Important Notes:**
-- All requests require `Authorization: bearer YOUR-API-KEY` header
-- All request/response bodies are JSON
-- Timestamps are in milliseconds since Unix epoch
-- Rate limit: 10 requests/second per API key
-
----
-
-## 👥 Team Workflow
-
-### Branching Strategy
-
-- `main` - Production-ready code (protected branch)
-- `dev` - Development integration branch
-- `feature/feature-name` - New features
-- `fix/bug-name` - Bug fixes
-- `docs/update-name` - Documentation updates
-
-### Development Process
-
-1. **Create a branch**
-   ```bash
-   git checkout dev
-   git pull origin dev
-   git checkout -b feature/your-feature-name
-   ```
-
-2. **Make changes and commit**
-   ```bash
-   git add .
-   git commit -m "Add user authentication system"
-   ```
-
-3. **Push to GitHub**
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-4. **Create Pull Request**
-   - Go to GitHub
-   - Click "Compare & pull request"
-   - Add description of changes
-   - Request review from teammates
-   - Assign to yourself
-
-5. **Code Review**
-   - At least one team member reviews
-   - Address any feedback
-   - Once approved, merge into `dev`
-
-6. **Testing**
-   - Test on `dev` branch
-   - When stable, merge `dev` into `main`
-
-### Commit Message Guidelines
-
-Use clear, descriptive commit messages:
+## Building for Production (recommended for judging)
 
 ```bash
-# Good ✅
-git commit -m "Add IRV vote counting algorithm"
-git commit -m "Fix login form validation bug"
-git commit -m "Update dashboard UI for mobile responsiveness"
+npm run build     # compiles everything into dist/
+npm run preview   # serves dist/ on port 3000 (production mode)
+```
 
-# Bad ❌
-git commit -m "Updates"
-git commit -m "Fixed stuff"
-git commit -m "WIP"
+Run `npm run preview` instead of `npm run dev` when judges are scoring — it's
+faster, hides development errors, and behaves exactly like the deployed version.
+
+---
+
+## Project Structure
+
+```
+source/
+├── index.html                    Vite entry point
+├── vite.config.js                Dev server config (port 3000)
+├── package.json                  Dependencies + npm scripts
+├── STYLE_GUIDE.md                ← You are here
+│
+└── src/
+    ├── main.jsx                  React root mount
+    ├── App.jsx                   Router + auth gate
+    │
+    ├── styles/
+    │   ├── variables.css         🎨 ALL design tokens (colors, spacing, fonts)
+    │   └── global.css            Reset + base styles + reusable classes
+    │
+    ├── components/
+    │   └── layout/
+    │       ├── Navbar.jsx/.css   Permanent nav (Req 8)
+    │       └── Layout.jsx        Page wrapper
+    │
+    └── pages/
+        ├── auth/
+        │   ├── LoginPage.jsx/.css       Req 6 — login
+        │   └── ForgotPasswordPage.jsx   Req 7 — password recovery
+        │
+        ├── dashboard/
+        │   └── DashboardPage.jsx/.css   Req 4 — role-aware home
+        │
+        ├── election/
+        │   └── ElectionViewPage.jsx/.css Req 3, 9, 10 — vote + results
+        │
+        └── history/
+            └── HistoryPage.jsx/.css     Req 5 — all past elections
 ```
 
 ---
 
-## 🤝 Contributing
+## What Each Developer Needs to Do Next
 
-### Before You Start
-1. Check existing issues and pull requests
-2. Discuss major changes with the team
-3. Follow the code style guide (see below)
+### 1. Wire up authentication (App.jsx, LoginPage.jsx)
+- Replace the mock `user` state in `App.jsx` with a real auth context
+- Store session in `localStorage` (for "remember me") or `sessionStorage`
+- Hash passwords with bcrypt or SHA-256 + salt before storing
 
-### Code Style
+### 2. Connect to the API (all pages)
+- Every `// TODO: replace with real API call` comment marks an API integration point
+- Use the key in your API requests: add it as `x-api-key` header
+- Base URL: https://hscc18f802d3.docs.apiary.io (see API docs)
 
-- Use consistent indentation (2 or 4 spaces)
-- Add comments for complex logic
-- Write descriptive variable names
-- Keep functions small and focused
-- Write tests for new features
+### 3. Implement IRV (ElectionViewPage.jsx, HistoryPage.jsx)
+- Add `src/utils/irv.js` with the algorithm from Requirement 9
+- Call it wherever you see `// TODO: computeIRV(...)`
 
-### Pull Request Template
+### 4. Local database for users (Requirement 6, 13)
+- The API doesn't store passwords — you need a local DB (SQLite, lowdb, etc.)
+- Store: username, email, hashed password, role, city, state, zip, address
+- Track: failed login attempts, lockout expiry, last IP, last login timestamp
 
-When creating a PR, include:
-
-```markdown
-## Description
-Brief description of changes
-
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Refactoring
-
-## Testing
-How did you test this?
-
-## Checklist
-- [ ] Code follows style guide
-- [ ] Comments added for complex code
-- [ ] Tests pass
-- [ ] No console errors
-- [ ] Tested on mobile
-```
+### 5. Real-time updates (ElectionViewPage.jsx)
+- The `setInterval` polling at 10 seconds is already stubbed in
+- Replace the empty `fetchElection` body with your real API call
 
 ---
 
-## 👨‍💻 Team Members
+## Environment Tips
 
-- **Team Lead**: [Name] - [@github-username]
-- **Frontend Developer**: [Name] - [@github-username]
-- **Backend Developer**: [Name] - [@github-username]
-- **UI/UX Designer**: [Name] - [@github-username]
-- **QA Tester**: [Name] - [@github-username]
+- Never commit API keys. Use a `.env` file:
+  ```
+  VITE_API_KEY=your_key_here
+  VITE_API_BASE=https://hscc18f802d3.docs.apiary.io
+  ```
+  Access in code: `import.meta.env.VITE_API_KEY`
 
----
-
-## 📝 License
-
-This project is created for the BDPA NHSCC 2026 competition.
+- The `.gitignore` should exclude `node_modules/` and `.env`
 
 ---
 
-## 🙏 Acknowledgments
+## Password Recovery Simulation (Requirement 7)
 
-- BDPA NHSCC for hosting the competition
-- API provided by BDPA Elections, Inc.
-- All team members for their hard work!
+Email sending is simulated by logging to the browser console.  
+To see recovery emails during judging:
 
----
+1. Open DevTools (`F12`)
+2. Go to the **Console** tab
+3. Trigger a password reset — a full formatted email appears in the console
 
-## 📞 Contact
-
-Questions? Reach out to the team on [Slack] `https://app.slack.com/client/T01P6S2FCQ7/C0B2KRC8PMZ` or open an issue!
-
-**Good luck and happy coding! 🚀**
+No external email service is used.
