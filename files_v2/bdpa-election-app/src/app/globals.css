@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* OWNER: Student A
+   Avoid adding component-specific styles here.
+   Use Tailwind utility classes in components instead. */
+
+html, body {
+  height: 100%;
+}
